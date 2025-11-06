@@ -21,7 +21,7 @@ const AddModal = () => {
     };
     console.log(formData);
 
-    fetch("http://localhost:8000/postModels", {
+    fetch("http:/localhost:8000/postModels", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -98,7 +98,7 @@ const AddModal = () => {
               name="thumbnailUrl"
               required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
-              placeholder="https://example.com/image.jpg"
+              placeholder="https:/example.com/image.jpg"
             />
           </div>
 

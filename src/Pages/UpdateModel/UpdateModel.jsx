@@ -1,37 +1,39 @@
+// import toast from "react-hot-toast";
 import toast from "react-hot-toast";
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
 
 const UpdateModel = () => {
-  const data = useLoaderData();
-  const model = data.result;
+  const model = useLoaderData();
+  console.log(model);
+  
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-    const formData = {
-      name: e.target.name.value,
-      category: e.target.category.value,
-      description: e.target.description.value,
-      thumbnail: e.target.thumbnail.value,
-    };
-
-    fetch(`https://3d-model-server.vercel.app/models/${model._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        toast.success("Successfully updated!");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const formData = {
+    name: e.target.name.value,
+    category: e.target.category.value,
+    description: e.target.description.value,
+    thumbnailUrl: e.target.thumbnail.value, // ✅ Fixed
   };
+
+  fetch(`http://localhost:8000/updateModel/${model._id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      toast.success("Successfully updated!");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 
   return (
@@ -94,7 +96,7 @@ const UpdateModel = () => {
             <input
               type="url"
               name="thumbnail"
-              defaultValue={model.thumbnail}
+              defaultValue={model.thumbnailUrl}
               required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="https://example.com/image.jpg"

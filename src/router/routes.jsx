@@ -78,7 +78,8 @@ export const router = createBrowserRouter([
             <UpdateModel />
           </PrivateRoute>
         ),
-       
+         loader: ({ params }) => fetch(`http://localhost:8000/getSingleModel/${params.id}`)
+
       },
       {
         path: "/auth/login",
