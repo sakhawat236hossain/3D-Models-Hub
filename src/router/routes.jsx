@@ -20,6 +20,7 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      loader:()=>fetch("http://localhost:8000/latestModels"),
     
       },
     {

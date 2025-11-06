@@ -1,11 +1,12 @@
 
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext";
-import { Link, useLoaderData} from "react-router";
+ import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 
 const ModelDetails = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate()
   // const { id } = useParams();
   const model=useLoaderData()
   console.log(model);
@@ -30,29 +31,41 @@ const ModelDetails = () => {
   //     })
   //     .catch((err) => console.log(err));
   // }, [user, id, refetch]);
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to restore this file!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
 
-  // const handleDelete = () => {
-  //   Swal.fire({
-  //     title: "Are you sure?",
-  //     text: "You won't be able to restore this file!",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonColor: "#d33",
-  //     cancelButtonColor: "#3085d6",
-  //     confirmButtonText: "Yes, delete it!",
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       fetch(`https://3d-model-server.vercel.app/models/${model._id}`, {
-  //         method: "DELETE",
-  //       })
-  //         .then((res) => res.json())
-  //         .then(() => {
-  //           Swal.fire("Deleted!", "Model removed successfully.", "success");
-  //           // navigate("/all-models");
-  //         });
-  //     }
-  //   });
-  // };
+        fetch(`http://localhost:8000/deleteModel/${model._id}`, {
+          method: "DELETE",
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error("Delete failed");
+            return res.json();
+          })
+          .then((data) => {
+            toast.success("Model Deleted Successfully!");
+            console.log(data);
+            navigate("/all-models"); // ✅ Now it will work
+          })
+          .catch((err) => {
+            console.log(err);
+            toast.error("Failed to delete!");
+          });
+
+      }
+    });
+  };
+
+
+
 
   // const handleDownload = () => {
   //   if (!user) return toast.error("Please login to download.");
@@ -158,9 +171,9 @@ const ModelDetails = () => {
                 Download
               </button>
 
-              {/* <button onClick={handleDelete} className="btn btn-outline rounded-full border-gray-300">
+              <button onClick={handleDelete} className="btn btn-outline rounded-full border-gray-300">
                 Delete
-              </button> */}
+              </button>
             </div>
           </div>
 

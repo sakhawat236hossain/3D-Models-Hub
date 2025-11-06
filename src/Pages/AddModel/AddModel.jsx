@@ -21,7 +21,7 @@ const AddModal = () => {
     };
     console.log(formData);
 
-    fetch("http:/localhost:8000/postModels", {
+    fetch("http://localhost:8000/postModels", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
