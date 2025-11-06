@@ -1,12 +1,14 @@
-// import { useContext, useEffect, useState } from "react";
-// import { Link, useNavigate, useParams } from "react-router";
+
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext";
-// import toast from "react-hot-toast";
+import { Link, useLoaderData} from "react-router";
+
 
 const ModelDetails = () => {
   // const navigate = useNavigate();
   // const { id } = useParams();
+  const model=useLoaderData()
+  console.log(model);
   // const { user } = useContext(AuthContext);
 
   // const [model, setModel] = useState({});
@@ -29,28 +31,28 @@ const ModelDetails = () => {
   //     .catch((err) => console.log(err));
   // }, [user, id, refetch]);
 
-  const handleDelete = () => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to restore this file!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`https://3d-model-server.vercel.app/models/${model._id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then(() => {
-            Swal.fire("Deleted!", "Model removed successfully.", "success");
-            // navigate("/all-models");
-          });
-      }
-    });
-  };
+  // const handleDelete = () => {
+  //   Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "You won't be able to restore this file!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#d33",
+  //     cancelButtonColor: "#3085d6",
+  //     confirmButtonText: "Yes, delete it!",
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       fetch(`https://3d-model-server.vercel.app/models/${model._id}`, {
+  //         method: "DELETE",
+  //       })
+  //         .then((res) => res.json())
+  //         .then(() => {
+  //           Swal.fire("Deleted!", "Model removed successfully.", "success");
+  //           // navigate("/all-models");
+  //         });
+  //     }
+  //   });
+  // };
 
   // const handleDownload = () => {
   //   if (!user) return toast.error("Please login to download.");
@@ -128,7 +130,7 @@ const ModelDetails = () => {
         <div className="flex flex-col md:flex-row gap-8 p-6 md:p-8">
 
           <div className="shrink-0 w-full md:w-1/2">
-            <img src={model.thumbnail} alt="" className="w-full object-cover rounded-xl shadow-md" />
+            <img src={model.thumbnailUrl} alt="" className="w-full object-cover rounded-xl shadow-md" />
           </div>
 
           <div className="flex flex-col justify-center space-y-4 w-full md:w-1/2">
@@ -156,9 +158,9 @@ const ModelDetails = () => {
                 Download
               </button>
 
-              <button onClick={handleDelete} className="btn btn-outline rounded-full border-gray-300">
+              {/* <button onClick={handleDelete} className="btn btn-outline rounded-full border-gray-300">
                 Delete
-              </button>
+              </button> */}
             </div>
           </div>
 

@@ -22,11 +22,12 @@ export const router = createBrowserRouter([
         element: <Home />,
     
       },
-      {
-        path: "/all-models",
-        element: <AllModels />,
-       
-      },
+    {
+  path: "/all-models",
+  element: <AllModels />,
+  loader: () => fetch("http://localhost:8000/allModels")
+},
+
       {
         path: "/profile",
         element: (
@@ -43,14 +44,14 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "/model-details/:id",
-        element: (
-          <PrivateRoute>
-            <ModelDetails />
-          </PrivateRoute>
-        ),
-      },
+   
+{
+  path: "/model-details/:id",
+  element: <ModelDetails />,
+  loader: ({ params }) => fetch(`http://localhost:8000/getSingleModel/${params.id}`)
+}
+,
+
 
        {
         path: "/my-models",

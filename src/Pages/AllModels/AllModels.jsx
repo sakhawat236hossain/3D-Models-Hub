@@ -1,9 +1,11 @@
 
+import { useLoaderData } from "react-router";
 import { ModelCard } from "../../components/ModelCard";
 
 
 const AllModels = () => {
-  // const data = useLoaderData();
+  const modelsData = useLoaderData();
+  console.log(modelsData);
   // const [models, setModels] = useState(data)
   // const [loading, setLoading] = useState(false)
 
@@ -55,11 +57,11 @@ const AllModels = () => {
       {/* <button className="btn btn-secondary  rounded-full">{loading ? "Searching...." : "Search"}</button> */}
      </form>
 
-      {/* <div className="grid grid-cols-3 lg:grid-cols-4 gap-3">
-        {models.map((model) => (
+      <div className="grid grid-cols-3 lg:grid-cols-4 gap-3">
+        {modelsData.map((model) => (
           <ModelCard key={model._id} model={model} />
         ))}
-      </div> */}
+      </div>
     </div>
   );
 };
