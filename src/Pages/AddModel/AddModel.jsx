@@ -2,10 +2,11 @@ import { use } from "react";
 
 import toast from "react-hot-toast";
 import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
 
 const AddModal = () => {
   const { user } = use(AuthContext);
-
+const navigait =useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -21,7 +22,7 @@ const AddModal = () => {
     };
     console.log(formData);
 
-    fetch("http://localhost:8000/postModels", {
+    fetch("https://3d-models-hub-server-nu.vercel.app/postModels", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,6 +32,7 @@ const AddModal = () => {
       .then((res) => res.json())
       .then((data) => {
         toast.success("Successfully added!");
+        navigait("/")
         console.log(data);
       })
       .catch((err) => {

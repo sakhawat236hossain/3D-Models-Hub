@@ -18,7 +18,7 @@ const handleSubmit = (e) => {
     thumbnailUrl: e.target.thumbnail.value, // ✅ Fixed
   };
 
-  fetch(`http://localhost:8000/updateModel/${model._id}`, {
+  fetch(`https://3d-models-hub-server-nu.vercel.app/updateModel/${model._id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

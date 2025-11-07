@@ -1,6 +1,7 @@
 import { use, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { ModelCard } from "../../components/ModelCard";
+import Spinner from "../../components/Spinner";
 const MyModels = () => {
     const {user} = use(AuthContext)
     const [models, setModels] = useState([])
@@ -8,14 +9,14 @@ const MyModels = () => {
 
     useEffect(()=> {
 
-        fetch(`https://3d-model-server.vercel.app/my-models?email=${user.email}`, {
+        fetch(`https://3d-models-hub-server-nu.vercel.app/my-models?email=${user.email}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`
             }
         })
         .then(res=> res.json())
         .then(data=> {
-            
+            console.log(data);
             setModels(data)
             setLoading(false)
         })
@@ -24,7 +25,7 @@ const MyModels = () => {
 
 
     if(loading) {
-        return <div> Please wait ... Loading...</div>
+        return <Spinner></Spinner>
     }
 
     return (

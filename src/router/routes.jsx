@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import Home from "../Pages/Home/Home";
 import AllModels from "../Pages/AllModels/AllModels";
@@ -20,15 +20,13 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-      loader:()=>fetch("http://localhost:8000/latestModels"),
-    
+        loader: () => fetch("https://3d-models-hub-server-nu.vercel.app/latestModels"),
       },
-    {
-  path: "/all-models",
-  element: <AllModels />,
-  loader: () => fetch("http://localhost:8000/allModels")
-},
-
+      {
+        path: "/all-models",
+        element: <AllModels />,
+        loader: () => fetch("https://3d-models-hub-server-nu.vercel.app/allModels"),
+      },
       {
         path: "/profile",
         element: (
@@ -45,16 +43,13 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-   
-{
-  path: "/model-details/:id",
-  element: <ModelDetails />,
-  loader: ({ params }) => fetch(`http://localhost:8000/getSingleModel/${params.id}`)
-}
-,
-
-
-       {
+      {
+        path: "/model-details/:id",
+        element: <ModelDetails />,
+       
+       
+      },
+      {
         path: "/my-models",
         element: (
           <PrivateRoute>
@@ -62,8 +57,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-
-       {
+      {
         path: "/my-downloads",
         element: (
           <PrivateRoute>
@@ -71,16 +65,15 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-
-        {
+      {
         path: "/update-model/:id",
         element: (
           <PrivateRoute>
             <UpdateModel />
           </PrivateRoute>
         ),
-         loader: ({ params }) => fetch(`http://localhost:8000/getSingleModel/${params.id}`)
-
+        loader: ({ params }) =>
+          fetch(`https://3d-models-hub-server-nu.vercel.app/getSingleModel/${params.id}`),
       },
       {
         path: "/auth/login",

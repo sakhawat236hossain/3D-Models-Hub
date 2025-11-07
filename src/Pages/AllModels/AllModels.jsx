@@ -1,32 +1,36 @@
 
 import { useLoaderData } from "react-router";
 import { ModelCard } from "../../components/ModelCard";
+import { useState } from "react";
+import SearchLoading from "../../components/searchLoading/searchLoading";
 
 
 const AllModels = () => {
   const modelsData = useLoaderData();
   console.log(modelsData);
-  // const [models, setModels] = useState(data)
-  // const [loading, setLoading] = useState(false)
+  const [models, setModels] = useState(modelsData)
+  const [loading, setLoading] = useState(false)
 
-  // const handleSearch = (e) => {
-  //   e.preventDefault()
-  //   const search_text = e.target.search.value
-  //   console.log(search_text)
-  //   setLoading(true)
+  const handleSearch = (e) => {
+    e.preventDefault()
+    const search_text = e.target.search.value
+    console.log(search_text)
+    setLoading(true)
 
-  //   fetch(`https://3d-model-server.vercel.app/search?search=${search_text}`)
-  //   .then(res=> res.json())
-  //   .then(data=> {
-  //     console.log(data)
-  //     setModels(data)
-  //     setLoading(false)
-  //   })
-  // }
+    fetch(`https://3d-models-hub-server-nu.vercel.app/search?search=${search_text}`)
+    .then(res=> res.json())
+ .then(data=> {
+  console.log(data)
+    setModels(data)
+      setLoading(false)
+    })
+  }
 
 
 
-  
+  if(loading){
+    return <SearchLoading></SearchLoading>
+  }
 
 
   return (
@@ -34,7 +38,7 @@ const AllModels = () => {
       <div className="text-2xl text-center font-bold"> All Models</div>
       <p className=" text-center ">Explore 3d models.</p>
      
-     <form className=" mt-5 mb-10 flex gap-2 justify-center">
+     <form onSubmit={handleSearch} className=" mt-5 mb-10 flex gap-2 justify-center">
        <label className="input rounded-full ">
         <svg
           className="h-[1em] opacity-50"
@@ -54,11 +58,11 @@ const AllModels = () => {
         </svg>
         <input name="search" type="search"  placeholder="Search" />
       </label>
-      {/* <button className="btn btn-secondary  rounded-full">{loading ? "Searching...." : "Search"}</button> */}
+      <button className="btn btn-secondary  rounded-full">{ loading? "Searching....":"Search"}</button>
      </form>
 
       <div className="grid grid-cols-3 lg:grid-cols-4 gap-3">
-        {modelsData.map((model) => (
+        {models.map((model) => (
           <ModelCard key={model._id} model={model} />
         ))}
       </div>
