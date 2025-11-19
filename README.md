@@ -58,5 +58,41 @@ globals ^16.4.0
 vite ^7.2.0
 
 
+## 💻 Technologies Used
+
+React.js
+
+Vite
+
+Tailwind CSS
+
+DaisyUI
+
+Firebase
+
+Framer Motion
+
+Lucide React Icons
+
+React Router & React Router DOM
+
+React Hot Toast & React Toastify
+
+SweetAlert2
+
+## 🚀 Project Features
+
+Responsive client UI for web applications
+
+Routing and protected/private routes with React Router
+
+Animated components with Framer Motion
+
+Toast notifications using React Hot Toast & React Toastify
+
+Alerts using SweetAlert2
+
+Clean code maintained with ESLint
+
 ## Live Link
 (https://3d-model-hub.netlify.app/)https://3d-model-hub.netlify.app/
