@@ -2,6 +2,15 @@
 
 -- A modern React.js client application using Vite, Tailwind CSS, DaisyUI, and Firebase.
 -- This project includes routing, animations, toast notifications, and reusable UI components for building responsive web applications.
+# 🍽 Plate Share Client
+
+[![React](https://img.shields.io/badge/React-19.2.0-blue?logo=react&logoColor=white)](https://reactjs.org/) 
+[![Vite](https://img.shields.io/badge/Vite-7.2.2-yellow?logo=vite&logoColor=white)](https://vitejs.dev/) 
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.1.17-blue?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Firebase](https://img.shields.io/badge/Firebase-12.5.0-orange?logo=firebase&logoColor=white)](https://firebase.google.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-6.0-green?logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Netlify](https://img.shields.io/badge/Netlify-Deploy-purple?logo=netlify&logoColor=white)](https://www.netlify.com/)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 # Dependencies List
 
