@@ -10,7 +10,6 @@
 [![Firebase](https://img.shields.io/badge/Firebase-12.5.0-orange?logo=firebase&logoColor=white)](https://firebase.google.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-6.0-green?logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![Netlify](https://img.shields.io/badge/Netlify-Deploy-purple?logo=netlify&logoColor=white)](https://www.netlify.com/)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 # Dependencies List
 
